@@ -20,7 +20,7 @@ jobs:
           cache: maven
       - name: Replace credentials
         run: |
-          find . -iname "*" -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
+          find -type f -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
           sed -i 's/hello/mypasswordhenry123/g' application.yml    
       - name: Build with Maven
         run: mvn -B package --file pom.xml
