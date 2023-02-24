@@ -21,7 +21,8 @@ jobs:
       - name: Replace credentials
         run: |
           find -type f -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
-          sed -i 's/hello/mypasswordhenry123/g' application.yml    
+          sed -i 's/hello/mypasswordhenry123/g' application.yml  +
+          $(cat application.yml )
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Set up Docker Buildx
