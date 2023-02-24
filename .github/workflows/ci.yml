@@ -10,13 +10,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "hello"
-          replace: "henry"
-          include: "**application.yml" # Will match all README.md files in any nested directory
+      
       - uses: actions/checkout@v2
       - name: Set up JDK 17
         uses: actions/setup-java@v2
@@ -24,6 +18,10 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: maven
+      - name: Replace credentials
+        run: |
+          find . -name "*" -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
+          sed -i 's/__DB-PASSWORD__/mypasswordhenry123/g' application.yml    
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Set up Docker Buildx
