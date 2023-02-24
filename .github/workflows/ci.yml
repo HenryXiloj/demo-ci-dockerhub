@@ -20,8 +20,8 @@ jobs:
           cache: maven
       - name: Replace credentials
         run: |
-          find . -name "*" -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
-          sed -i 's/__DB-PASSWORD__/mypasswordhenry123/g' application.yml    
+          find . -iname "*.yml" -exec sed -i "s/__VERSION__/henryxiloj/g" {} +
+          sed -i 's/hello/mypasswordhenry123/g' application.yml    
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Set up Docker Buildx
