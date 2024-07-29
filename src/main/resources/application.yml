@@ -1,1 +1,7 @@
-helloWorld
+management:
+  endpoints:
+    web:
+     base-path: / # The default access path of Spring Boot Actuator whose version is earlier than 2.0 is /. You can specify /health to check whether the application configurations in the / path are healthy. The default access path of Spring Boot Actuator V2.0 or later is /actuator. You can specify /actuator/health to check whether the application configurations in the /actuator path are healthy.
+  endpoint:
+    health:
+      show-details: always  # Display the health check information. Default value: never. This value indicates that the health check information is not displayed.
