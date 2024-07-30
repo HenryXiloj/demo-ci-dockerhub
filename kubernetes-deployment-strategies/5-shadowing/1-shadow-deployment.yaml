@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shadow-myapp
+  namespace: deployment-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+      version: shadow
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: shadow
+    spec:
+      containers:
+        - name: myapp
+          image: henryxilojherrera/democi:19
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 5

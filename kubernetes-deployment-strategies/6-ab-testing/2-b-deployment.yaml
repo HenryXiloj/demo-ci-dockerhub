@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b-myapp
+  namespace: deployment-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+      version: b
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: b
+    spec:
+      containers:
+        - name: myapp
+          image: henryxilojherrera/democi:20
+          ports:
+            - name: http
+              containerPort: 8080
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 5
