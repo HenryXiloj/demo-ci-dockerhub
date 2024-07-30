@@ -15,5 +15,10 @@ public class HelloWorldController {
     public String helloWorld(@PathVariable String name){
         return "Hello "+ name;
     }
+
+    @GetMapping("/green")
+    public String helloGreen(){
+        return "Hello Green";
+    }
 }
 
